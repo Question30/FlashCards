@@ -15,16 +15,15 @@ footer {
 }
 
 .card {
+  display: flex;
   width: fit-content;
   border: solid black 2px;
   margin: 20px;
 }
 
-img {
-  object-fit: contain;
-  width: 200px;
+.image {
+  background-image: url("");
   height: 200px;
-  margin: 10px;
 }
 
 #image-gallery {
@@ -47,4 +46,16 @@ img {
 #main-container {
   margin: 20px;
   text-align: center;
+}
+
+.cover {
+  align-self: flex-end;
+  bottom: 0;
+  height: 10%;
+  background-color: lightgrey;
+  width: 200px;
+  z-index: 1;
+  border-radius: 10px 10px 0px 0px;
+  transition: height 2s;
+  overflow: hidden;
 }

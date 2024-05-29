@@ -27,36 +27,37 @@
       <h1>Image Gallery</h1>
       <section id="image-gallery">
         <div class="card">
-          <img src="#" alt="" />
+          <div class="image"></div>
+          <div class="cover">
+            <p class="cover-name">name</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+              quia aperiam tenetur nostrum accusamus incidunt consequuntur
+              repudiandae doloribus. Reprehenderit ducimus delectus, eum minima
+              quis animi ullam sed omnis quo sint.
+            </p>
+          </div>
         </div>
         <div class="card">
-          <img src="#" alt="" />
-        </div>
-        <div class="card">
-          <img src="#" alt="" />
-        </div>
-        <div class="card">
-          <img src="#" alt="" />
-        </div>
-
-        <div class="card">
-          <img src="#" alt="" />
+          <div class="image"></div>
+          <div class="cover"></div>
         </div>
       </section>
 
-      <section id="suggestions">
-        <form action="" id="suggestion-form">
+      <section id="Add image">
+        <form action="" id="add-image">
           <label for="name">Name:</label>
           <input type="text" name="name" id="name" />
-          <label for="subject">Subject:</label>
-          <input type="text" name="subject" id="subject" />
-          <label for="suggestion">Suggestion:</label>
+          <label for="url">URL</label>
+          <input type="text" name="url" id="url" />
+          <label for="description">Description:</label>
           <textarea
-            name="suggestion"
-            id="suggestion"
+            name="description"
+            id="description"
             rows="5"
             cols="55"
           ></textarea>
+          <input type="submit" />
         </form>
       </section>
     </main>

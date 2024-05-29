@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+nav,
+footer {
+  width: 100vw;
+  background-color: aqua;
+  height: 40px;
+}
+
+footer {
+  bottom: 0;
+  margin-top: 10px;
+}
+
+.card {
+  width: fit-content;
+  border: solid black 2px;
+  margin: 20px;
+}
+
+img {
+  object-fit: contain;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+}
+
+#image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+
+#suggestions {
+  display: flex;
+  justify-content: center;
+}
+
+#suggestion-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#main-container {
+  margin: 20px;
+  text-align: center;
+}

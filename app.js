@@ -1,4 +1,4 @@
-const myCards = JSON.parse(localStorage.getItem("myCards") || "[]");
+let myCards = JSON.parse(localStorage.getItem("myCards") || "[]");
 
 //Nav Bar
 const ulEl = document.querySelector("ul");
@@ -50,6 +50,10 @@ formEl.addEventListener("submit", (event) => {
   myCards.push({ wOQ: formEl[0].value, answer: formEl[1].value });
   localStorage.setItem("myCards", JSON.stringify(myCards));
   imageGallery.append(card);
+
+  //clear the form
+  formEl[0].value = "";
+  formEl[1].value = "";
 });
 
 //takes the form data and generates a new card
@@ -65,7 +69,10 @@ function createCard(wOQ, answer) {
   namePEl.textContent = "Answer:";
   const descPEl = document.createElement("p");
   descPEl.textContent = answer;
+  const xSpan = document.createElement("span");
+  xSpan.textContent = "X";
 
+  cardDiv.append(xSpan);
   cardDiv.append(nameHEl);
   coverDiv.append(namePEl);
   coverDiv.append(descPEl);
@@ -75,7 +82,7 @@ function createCard(wOQ, answer) {
 }
 
 imageGallery.addEventListener("click", (event) => {
-  console.dir(event.target.parentElement);
+  // console.dir(event.target.parentElement);
   const target = event.target.parentElement;
   if (target.classList.contains("cover")) {
     console.log(target.style.height);
@@ -84,6 +91,12 @@ imageGallery.addEventListener("click", (event) => {
     } else {
       target.style.height = "10%";
     }
+  }
+  //Delete card
+  console.dir(event.target);
+  if (event.target.innerHTML === "X") {
+    const currentCard = event.target.nextSibling.textContent;
+    deleteCard(currentCard);
   }
 });
 
@@ -95,7 +108,7 @@ function loadFlashCard(myCards) {
   h1El.textContent = myCards[randomNum].wOQ;
   const pEl = document.createElement("p");
   pEl.textContent = myCards[randomNum].answer;
-  pEl.style.color = "white";
+  pEl.style.color = "var(--card-bg)";
 
   flashCard.append(h1El);
   flashCard.append(pEl);
@@ -106,11 +119,37 @@ loadFlashCard(myCards);
 //Event to flip the card
 const flipBtn = document.getElementById("flipbtn");
 
-flipBtn.addEventListener("click", () => {
-  flashCard.style.transform = "rotateY(180deg)";
-  flashCard.firstChild.style.transform = "rotateY(180deg)";
-  flashCard.lastChild.style.transform = "rotateY(180deg)";
-  setTimeout(() => {
-    flashCard.lastChild.style.color = "black";
-  }, 1000);
+flipBtn.addEventListener("click", () => flipCard(true, 180));
+
+function flipCard(reveal, deg) {
+  flashCard.style.transform = `rotateY(${deg}deg)`;
+  flashCard.firstChild.style.transform = `rotateY(${deg}deg)`;
+  flashCard.lastChild.style.transform = `rotateY(${deg}deg)`;
+  if (reveal) {
+    setTimeout(() => {
+      flashCard.lastChild.style.color = "black";
+    }, 1000);
+  }
+}
+
+//Get a random card on button press
+
+const randomButton = document.getElementById("random");
+
+randomButton.addEventListener("click", () => {
+  flashCard.innerHTML = "";
+  loadFlashCard(myCards);
+  flipCard(false, -180);
 });
+
+function deleteCard(cardName) {
+  myCards.forEach((obj) => {
+    if (obj.wOQ === cardName) {
+      const index = myCards.indexOf(obj);
+      myCards.splice(index, 1);
+    }
+    imageGallery.innerHTML = "";
+    loadGallery(myCards);
+    localStorage.setItem("myCards", JSON.stringify(myCards));
+  });
+}

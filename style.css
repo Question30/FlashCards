@@ -1,11 +1,22 @@
+:root {
+  --card-bg: #eeeeee;
+  --accent-color: #dc5f00;
+  --gray-color: #686d76;
+  --dark-color: #373a40;
+}
+
 * {
   margin: 0;
   padding: 0;
 }
+body {
+  background-color: var(--card-bg);
+}
+
 nav,
 footer {
   width: 100vw;
-  background-color: aqua;
+  background-color: var(--accent-color);
   height: 40px;
 }
 
@@ -15,10 +26,13 @@ nav ul {
   justify-content: space-around;
   padding: 10px 0;
 }
+h1 {
+  color: var(--dark-color);
+}
 
 a {
   text-decoration: none;
-  color: black;
+  color: var(--card-bg);
 }
 
 footer {
@@ -42,7 +56,8 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
   height: 200px;
-  box-shadow: 10px 5px 5px lightgrey;
+  box-shadow: 10px 5px 5px var(--dark-color);
+  background-color: var(--card-bg);
 }
 
 #image-gallery {
@@ -87,7 +102,7 @@ h1 {
 }
 
 #flash-card {
-  width: 70%;
+  width: 60%;
   height: 40vh;
   border: 3px solid black;
   color: black;
@@ -95,11 +110,38 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: transform 2s;
-  box-shadow: 10px 5px 5px lightgrey;
+  transition: transform 4s;
+  box-shadow: 10px 5px 5px var(--dark-color);
+  background-color: var(--card-bg);
+  margin: 20px 0;
 }
 
-#flipbtn {
+button {
   margin: 10px 0px;
   width: 40%;
+  background-color: #dc5f00;
+  color: #eeeeee;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.container {
+  display: flex;
+}
+
+input,
+textarea {
+  margin: 10px;
+}
+
+#submit {
+  background-color: #dc5f00;
+  color: #eeeeee;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+span {
+  margin-left: auto;
+  padding: 0px 5px;
 }

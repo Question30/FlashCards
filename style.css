@@ -9,9 +9,29 @@ footer {
   height: 40px;
 }
 
+nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
 footer {
   bottom: 0;
   margin-top: 10px;
+}
+h1 {
+  margin-bottom: 30px;
+}
+
+#about {
+  margin: 30px 10px;
+  font-size: large;
 }
 
 .card {
@@ -22,6 +42,7 @@ footer {
   flex-direction: column;
   justify-content: space-between;
   height: 200px;
+  box-shadow: 10px 5px 5px lightgrey;
 }
 
 #image-gallery {
@@ -58,9 +79,27 @@ footer {
   overflow: hidden;
 }
 
+#flash {
+  display: flex;
+  align-items: center;
+  font-size: xx-large;
+  flex-direction: column;
+}
+
 #flash-card {
-  margin: 0 auto;
   width: 70%;
   height: 40vh;
   border: 3px solid black;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 2s;
+  box-shadow: 10px 5px 5px lightgrey;
+}
+
+#flipbtn {
+  margin: 10px 0px;
+  width: 40%;
 }

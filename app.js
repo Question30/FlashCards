@@ -1,15 +1,28 @@
 const myCards = JSON.parse(localStorage.getItem("myCards") || "[]");
 
-//Populate nav bar
+//Nav Bar
 const ulEl = document.querySelector("ul");
 
 const navLinks = ["About", "Flash Card", "Gallery", "Add a Card"];
 
 const fragment = new DocumentFragment();
-
+//Populate the nav bar
 for (const link of navLinks) {
   const li = document.createElement("li");
-  li.textContent = link;
+  const aEl = document.createElement("a");
+  aEl.textContent = link;
+
+  if (link === "About") {
+    aEl.setAttribute("href", "#about");
+  } else if (link === "Flash Card") {
+    aEl.setAttribute("href", "#flash");
+  } else if (link === "Gallery") {
+    aEl.setAttribute("href", "#image-gallery");
+  } else if (link === "Add a Card") {
+    aEl.setAttribute("href", "#add-image");
+  }
+
+  li.append(aEl);
   fragment.append(li);
 }
 
@@ -74,7 +87,30 @@ imageGallery.addEventListener("click", (event) => {
   }
 });
 
+const flashCard = document.getElementById("flash-card");
 //load a random flash card from the gallery
-function loadFlashCard(myCards) {}
+function loadFlashCard(myCards) {
+  const randomNum = Math.floor(Math.random() * myCards.length);
+  const h1El = document.createElement("h1");
+  h1El.textContent = myCards[randomNum].wOQ;
+  const pEl = document.createElement("p");
+  pEl.textContent = myCards[randomNum].answer;
+  pEl.style.color = "white";
+
+  flashCard.append(h1El);
+  flashCard.append(pEl);
+}
 
 loadFlashCard(myCards);
+
+//Event to flip the card
+const flipBtn = document.getElementById("flipbtn");
+
+flipBtn.addEventListener("click", () => {
+  flashCard.style.transform = "rotateY(180deg)";
+  flashCard.firstChild.style.transform = "rotateY(180deg)";
+  flashCard.lastChild.style.transform = "rotateY(180deg)";
+  setTimeout(() => {
+    flashCard.lastChild.style.color = "black";
+  }, 1000);
+});

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <script src="app.js" defer></script>
-    <title>Anime Gallery</title>
+    <title>Flash Cards</title>
   </head>
   <body>
     <nav id="nav"><ul></ul></nav>
@@ -14,49 +14,32 @@
       <h1>About</h1>
       <section id="about">
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium,
-          ipsum nobis, ad veritatis quis quam, harum tenetur adipisci beatae
-          recusandae aliquam. Dignissimos rem labore quas vero sapiente
-          doloribus aut! Vel! Lorem ipsum dolor sit, amet consectetur
-          adipisicing elit. Veritatis sunt perferendis porro aspernatur vero sit
-          dolor, autem ab? Excepturi architecto dolorem mollitia officia minima
-          expedita rerum. Dicta at excepturi reprehenderit.
+          Simple flash cards generator. Enter the word or question and the
+          answer to create a flash card. Click on the answer to reveal it.
         </p>
       </section>
+      <h1>Flash Card</h1>
+      <section>
+        <div id="flash-card"></div>
+      </section>
 
-      <h1>Image Gallery</h1>
+      <h1>Flash Card Gallery</h1>
       <section id="image-gallery">
         <div class="card">
-          <div class="image"></div>
+          <h1>Word</h1>
           <div class="cover">
-            <p class="cover-name">name</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-              quia aperiam tenetur nostrum accusamus incidunt consequuntur
-              repudiandae doloribus. Reprehenderit ducimus delectus, eum minima
-              quis animi ullam sed omnis quo sint.
-            </p>
+            <p>Answer:</p>
+            <p></p>
           </div>
-        </div>
-        <div class="card">
-          <div class="image"></div>
-          <div class="cover"></div>
         </div>
       </section>
 
-      <section id="Add image">
+      <section class="form">
         <form action="" id="add-image">
-          <label for="name">Name:</label>
-          <input type="text" name="name" id="name" />
-          <label for="url">URL</label>
-          <input type="text" name="url" id="url" />
-          <label for="description">Description:</label>
-          <textarea
-            name="description"
-            id="description"
-            rows="5"
-            cols="55"
-          ></textarea>
+          <label for="word-question">Word or Question:</label>
+          <input type="text" name="word-question" id="word-question" />
+          <label for="answer">Answer:</label>
+          <textarea name="answer" id="answer" rows="5" cols="55"></textarea>
           <input type="submit" />
         </form>
       </section>

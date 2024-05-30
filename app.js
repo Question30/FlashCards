@@ -1,6 +1,9 @@
+const myCards = JSON.parse(localStorage.getItem("myCards") || "[]");
+
+//Populate nav bar
 const ulEl = document.querySelector("ul");
 
-const navLinks = ["About", "Images", "Suggestion"];
+const navLinks = ["About", "Flash Card", "Gallery", "Add a Card"];
 
 const fragment = new DocumentFragment();
 
@@ -12,47 +15,47 @@ for (const link of navLinks) {
 
 ulEl.appendChild(fragment);
 
-// const
 const imageGallery = document.querySelector("#image-gallery");
 
-const formEl = document.getElementById("add-image");
-console.dir(formEl);
+//Load imageGallery
+function loadGallery(myCards) {
+  myCards.forEach((obj) => {
+    const card = createCard(obj.wOQ, obj.answer);
+    imageGallery.append(card);
+  });
+}
 
-let formData = {
-  name,
-  description,
-  url,
-};
+loadGallery(myCards);
+
+//Get Form data on submit
+const formEl = document.getElementById("add-image");
 
 formEl.addEventListener("submit", (event) => {
   event.preventDefault();
-  formData.name = formEl[0].value;
-  formData.url = formEl[1].value;
-  formData.description = formEl[2].value;
-  console.log(formData);
 
-  const card = createCard(formData.name, formData.description, formData.url);
-
+  const card = createCard(formEl[0].value, formEl[1].value);
+  myCards.push({ wOQ: formEl[0].value, answer: formEl[1].value });
+  localStorage.setItem("myCards", JSON.stringify(myCards));
   imageGallery.append(card);
 });
 
-function createCard(name, description, url) {
+//takes the form data and generates a new card
+function createCard(wOQ, answer) {
   const cardDiv = document.createElement("div");
   cardDiv.classList.add("card");
-  const imageDiv = document.createElement("div");
-  imageDiv.classList.add("image");
   const coverDiv = document.createElement("div");
   coverDiv.classList.add("cover");
+  const nameHEl = document.createElement("h1");
+  nameHEl.textContent = wOQ;
   const namePEl = document.createElement("p");
-  namePEl.classList.add("cover-name");
-  namePEl.textContent = name;
+  nameHEl.textContent = wOQ;
+  namePEl.textContent = "Answer:";
   const descPEl = document.createElement("p");
-  descPEl.textContent = description;
+  descPEl.textContent = answer;
 
+  cardDiv.append(nameHEl);
   coverDiv.append(namePEl);
   coverDiv.append(descPEl);
-
-  cardDiv.appendChild(imageDiv);
   cardDiv.appendChild(coverDiv);
 
   return cardDiv;
@@ -60,8 +63,8 @@ function createCard(name, description, url) {
 
 imageGallery.addEventListener("click", (event) => {
   console.dir(event.target.parentElement);
-  if (event.target.classList.contains("cover-name")) {
-    const target = event.target.parentElement;
+  const target = event.target.parentElement;
+  if (target.classList.contains("cover")) {
     console.log(target.style.height);
     if (target.style.height === "10%" || target.style.height === "") {
       target.style.height = "70%";
@@ -70,3 +73,8 @@ imageGallery.addEventListener("click", (event) => {
     }
   }
 });
+
+//load a random flash card from the gallery
+function loadFlashCard(myCards) {}
+
+loadFlashCard(myCards);

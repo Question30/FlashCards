@@ -16,13 +16,11 @@ footer {
 
 .card {
   display: flex;
-  width: fit-content;
+  width: 200px;
   border: solid black 2px;
   margin: 20px;
-}
-
-.image {
-  background-image: url("");
+  flex-direction: column;
+  justify-content: space-between;
   height: 200px;
 }
 
@@ -32,15 +30,15 @@ footer {
   width: 100%;
   justify-content: center;
 }
-
-#suggestions {
+.form {
   display: flex;
   justify-content: center;
 }
 
-#suggestion-form {
+#add-image {
   display: flex;
   flex-direction: column;
+  width: 70%;
 }
 
 #main-container {
@@ -58,4 +56,11 @@ footer {
   border-radius: 10px 10px 0px 0px;
   transition: height 2s;
   overflow: hidden;
+}
+
+#flash-card {
+  margin: 0 auto;
+  width: 70%;
+  height: 40vh;
+  border: 3px solid black;
 }

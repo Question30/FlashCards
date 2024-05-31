@@ -42,6 +42,8 @@ loadGallery(myCards);
 
 //Get Form data on submit
 const formEl = document.getElementById("add-image");
+//clear the form
+const newArr = Array.from(formEl.elements);
 
 formEl.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -51,9 +53,11 @@ formEl.addEventListener("submit", (event) => {
   localStorage.setItem("myCards", JSON.stringify(myCards));
   imageGallery.append(card);
 
-  //clear the form
-  formEl[0].value = "";
-  formEl[1].value = "";
+  newArr.forEach((element) => {
+    if (element.type !== "submit") {
+      element.value = "";
+    }
+  });
 });
 
 //takes the form data and generates a new card
@@ -93,10 +97,12 @@ imageGallery.addEventListener("click", (event) => {
     }
   }
   //Delete card
-  console.dir(event.target);
   if (event.target.innerHTML === "X") {
-    const currentCard = event.target.nextSibling.textContent;
-    deleteCard(currentCard);
+    if (confirm("Are you sure you want to delete this item?")) {
+      const currentCard = event.target.nextSibling.textContent;
+
+      deleteCard(currentCard);
+    }
   }
 });
 
@@ -139,7 +145,7 @@ const randomButton = document.getElementById("random");
 randomButton.addEventListener("click", () => {
   flashCard.innerHTML = "";
   loadFlashCard(myCards);
-  flipCard(false, -180);
+  flipCard(false, 360);
 });
 
 function deleteCard(cardName) {

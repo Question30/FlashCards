@@ -86,10 +86,8 @@ function createCard(wOQ, answer) {
 }
 
 imageGallery.addEventListener("click", (event) => {
-  // console.dir(event.target.parentElement);
   const target = event.target.parentElement;
   if (target.classList.contains("cover")) {
-    console.log(target.style.height);
     if (target.style.height === "10%" || target.style.height === "") {
       target.style.height = "70%";
     } else {
